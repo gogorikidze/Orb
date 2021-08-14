@@ -1,0 +1,49 @@
+/*cover styling */
+.cover{
+  height: 220px;
+  width: 155px;
+  margin: 0px;
+}
+.topbook{
+  height: 5%;
+  width: 97%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 7px;
+  background-size: cover;
+}
+.notch{
+  float:left;
+  height: 90%;
+  width: 95%;
+  position: relative;
+  top: 10%;
+  left: 2%;
+  background-color:white;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.notchtriangle{
+  position: relative;
+  top: 10%;
+  left: 2%;
+  float:left;
+  width: 0;
+  border-right: 5px solid transparent;
+}
+.leftbook{
+  background-size: cover;
+  width: 2%;
+  height: 100%;
+  float:left;
+  border-bottom-left-radius: 15px;
+}
+.frontbook{
+  float:left;
+  height:100%;
+  width: 98%;
+  border-bottom-right-radius: 7px;
+  border-top-right-radius: 7px;
+}
+.lowercover{
+  height: 95%;
+}

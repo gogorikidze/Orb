@@ -12,11 +12,12 @@ async function pages(term, then){ //gets the number of all pages
       .then(response => response.text())
       .then(body => {
         const $ = cheerio.load(body);
+
+        //checks if number of results = 0;
         if($('#app > div > div.container.searchResults > div.flex-between.mt-4.mb-3 > div').text().trim() == "სულ 0"){
           then("Nothing found");
           return "not found";
         }
-        console.log('contr');
 
         let smaller = $.html('#app > div');
         if(smaller.split('<span>/</span>')[1] && smaller.split('<span>/</span>')[1].split('<span>')[1] && smaller.split('<span>/</span>')[1].split('<span>')[1].split('</span>')[0]){

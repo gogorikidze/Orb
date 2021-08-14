@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ka">
+  <head>
+    <meta charset="utf-8">
+    <title>OSCL</title>
+    <meta name="description" content="უფასო ქართული ელ-წიგნების საძიებო სისტემა" />
+    <meta name="keywords" content="orb.ge, ორბ.ჯი, ქართული, ელექტრონული, წიგნები, საძიებო, სისტემა, ორბ.გე, ორბი, ბიბლიოთეკა, ელ-წიგნები" />
+
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href='css/main.css'>
+    <link rel="stylesheet" href="parts/cover/cover.css">
+    <script defer src="parts/cover/cover.js"></script>
+  </head>
+  <body>
+    <section id="main">
+      <div id="logo">OSCL<text style="font-size:12px;color:grey">beta</text></div>
+      <div id="search">
+        <input type="text" id="searchfield">
+        <div id="searchbutton" type="button" onclick="search(document.getElementById('searchfield').value);">ძებნა</div>
+        <script>document.getElementById("searchfield").addEventListener("keyup", function(event) {if (event.key === "Enter") {search(document.getElementById('searchfield').value)}});</script>
+      </div>
+      <div id="results"></div>
+    </section>
+  </body>
+</html>
