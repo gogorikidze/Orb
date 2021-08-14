@@ -8,14 +8,24 @@ module.exports = {
 }
 
 async function pages(term, then){ //gets the number of all pages
-  let numberOfPages = 1;
-  await fetch('https://el.ge/search?visible_subtype_id=&query='+term+'&type%5B%5D=1&type%5B%5D=52')
+  fetch(`https://el.ge/search?visible_subtype_id=&query=${term}&type%5B%5D=1&type%5B%5D=52`)
       .then(response => response.text())
       .then(body => {
-        let smaller = cheerio.load(body).html('#app > div');
-        numberOfPages = parseInt(smaller.split('<span>/</span>')[1].split('<span>')[1].split('</span>')[0]);
+        const $ = cheerio.load(body);
+        if($('#app > div > div.container.searchResults > div.flex-between.mt-4.mb-3 > div').text().trim() == "სულ 0"){
+          then("Nothing found");
+          return "not found";
+        }
+        console.log('contr');
+
+        let smaller = $.html('#app > div');
+        if(smaller.split('<span>/</span>')[1] && smaller.split('<span>/</span>')[1].split('<span>')[1] && smaller.split('<span>/</span>')[1].split('<span>')[1].split('</span>')[0]){
+          numberOfPages = parseInt(smaller.split('<span>/</span>')[1].split('<span>')[1].split('</span>')[0]);
+        }else{
+          numberOfPages = 1;
+        }
+        getAllPages(term, numberOfPages, then);
       });
-  getAllPages(term, numberOfPages, then);
 }
 async function getAllPages(term, numberOfPages, then){
   let result = [];
@@ -24,7 +34,6 @@ async function getAllPages(term, numberOfPages, then){
       .then(response => response.text())
       .then(body => {
         result = result.concat(parse(body));
-        console.log(i)
       })
   }
   then(result);
