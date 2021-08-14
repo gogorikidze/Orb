@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/search/:term', (request, response) => {
-    scr.search('php', result => {
+    scr.search(encodeURI(request.params.term), result => {
         response.json(result);
     })
 })
