@@ -16,7 +16,7 @@ function search(keyword){
       }
     }
   };
-  xhttp.open("GET", "./api/search/el.ge/"+keyword, true);
+  xhttp.open("GET", "./api/el.ge/"+keyword, true);
   xhttp.send();
 }
 function displayResults(response){

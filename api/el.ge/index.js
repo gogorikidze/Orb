@@ -1,11 +1,13 @@
 const cheerio = require('cheerio');
+const router = require('express').Router();
 const fetch = require("node-fetch");
 
-module.exports = {
-  search: (term, then) => {
-    pages(term, then);
-  }
-}
+router.get('/:term', (req, res) => {
+  pages(encodeURI(req.params.term), result => {
+    res.json(result);
+  });
+})
+module.exports = router;
 
 async function pages(term, then){ //gets the number of all pages
   fetch(`https://el.ge/search?visible_subtype_id=&query=${term}&type%5B%5D=1&type%5B%5D=52`)
