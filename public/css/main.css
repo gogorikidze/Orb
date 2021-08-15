@@ -1,25 +1,25 @@
 @font-face {
-    font-family: "geo";
-    src: url("geo.ttf");
-    font-display: swap;
+  font-family: "geo";
+  src: url("geo.ttf");
+  font-display: swap;
 }
 :root {
-  --ancyan: rgba(0, 130, 200, 0.85);
+  --ancyan: rgba(22, 105, 150, 0.85);
 }
-body{
+body {
   margin: 0;
-  font-family: 'PT Sans', sans-serif, 'geo';
+  font-family: "PT Sans", sans-serif, "geo";
 }
-#searchfield{
+#searchfield {
   box-sizing: border-box;
   width: 54.8%;
   height: 35px;
   outline: 0;
   font-size: 20px;
   position: relative;
-  left:15%;
+  left: 15%;
 }
-#searchbutton{
+#searchbutton {
   box-sizing: border-box;
   width: 15%;
   height: 35px;
@@ -28,79 +28,79 @@ body{
   border: 1px black solid;
   margin-left: 0.2%;
   position: relative;
-  left:15%;
+  left: 15%;
   cursor: pointer;
 }
-#main{
+#main {
   padding: 0;
   position: absolute;
-  top:25%;
-  width:100%;
+  top: 25%;
+  width: 100%;
   text-align: center;
 }
-#logo{
+#logo {
   font-size: 90px;
   color: rgba(0, 130, 200, 0.95);
 }
-#lower{
+#lower {
   padding-bottom: 20px;
 }
-#search{
+#search {
   display: inline-flex;
   width: 100%;
   text-align: center;
   position: relative;
   padding-bottom: 10px;
 }
-#results{
+#results {
   width: 70%;
   position: relative;
-  left:15%;
+  left: 15%;
 }
-#cat{
+#cat {
   width: 55%;
   position: relative;
-  left:15%;
+  left: 15%;
 }
 
 /*result */
-.result{
+.result {
   position: relative;
-  height:220px;
-  max-height:220px;
+  height: 220px;
+  max-height: 220px;
   min-width: 100%;
-  overflow:hidden;
+  overflow: hidden;
   border: 1px solid var(--ancyan);
-  border-left:0;
+  border-left: 0;
   border-radius: 20px;
   border-bottom-right-radius: 5px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
-.result .identifier{
+.result .identifier {
   color: var(--ancyan);
 }
-.result .cover{
-  float:left;
+.result .cover {
+  float: left;
 }
-.result .bookinfo{
-  float:left;
+.result .bookinfo {
+  float: left;
   padding-left: 10px;
   padding-top: 5px;
   overflow: hidden;
 }
-.bookname{
+.bookname {
   height: 25px;
-  font-size:20px;
+  font-size: 20px;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   position: absolute;
   max-width: 100%;
 }
-.bookauthor{
+.bookauthor {
   height: 20px;
-  font-size:15px;
+  font-size: 15px;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -108,8 +108,8 @@ body{
   top: 30px;
   max-width: 100%;
 }
-.bookdescription{
-  font-size:12px;
+.bookdescription {
+  font-size: 12px;
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -125,72 +125,72 @@ body{
   color: white;
   display: flex;
 }
-.bottomButtons a{
+.bottomButtons a {
   text-decoration: none;
 }
-.bottomButtons div{
+.bottomButtons div {
   padding-left: 10px;
   padding-right: 10px;
   height: 30px;
   line-height: 30px;
   cursor: pointer;
-  font-size:15px;
+  font-size: 15px;
   border-radius: 5px;
   margin-left: 5px;
 }
-.viewButton{
+.viewButton {
   background-color: var(--ancyan);
   border: 1px var(--ancyan) solid;
 }
-.downloadButton{
+.downloadButton {
   background-color: white;
   border: 1px var(--ancyan) solid;
   color: var(--ancyan);
 }
 @media only screen and (max-width: 600px) {
-  #logo{
+  #logo {
     font-size: 66px;
   }
-  .result{
-    height:auto;
-    max-height:500px;
+  .result {
+    height: auto;
+    max-height: 500px;
     min-width: 100%;
     border-left: 1px solid var(--ancyan);
   }
-  .result .identifier{
+  .result .identifier {
     color: var(--ancyan);
   }
-  .result .cover{
+  .result .cover {
     float: none;
   }
-  .result .bookinfo{
+  .result .bookinfo {
     float: none;
   }
-  .result .bookinfo{
-    float:left;
+  .result .bookinfo {
+    float: left;
     padding-left: 10px;
     padding-top: 5px;
     overflow: hidden;
   }
-  .bookname{
+  .bookname {
     position: relative;
   }
-  .bookauthor{
+  .bookauthor {
     position: relative;
     top: 0px;
   }
-  .bookdescription{
+  .bookdescription {
     display: none;
   }
-  .seemore{
+  .seemore {
     position: relative;
     bottom: 0px;
     right: 0px;
     margin-bottom: 5px;
   }
-  #cat{
+  #cat {
     width: 70%;
     position: relative;
-    left:15%;
+    left: 15%;
   }
 }

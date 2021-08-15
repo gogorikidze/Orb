@@ -1,42 +1,84 @@
-
+let sources = [
+  {
+      name: 'ელექტრონული რესურსების პორტალი EL.ge',
+      addr: 'el.ge',
+      imgsrc: 'parts/logos/el.ge.png',
+      imgbg: '#042a3d',
+      selected: false
+  },
+  {
+      name: 'საქართველოს პარლამენტის ეროვნული ბიბლიოთეკა',
+      addr: 'dspace.nplg.gov.ge',
+      imgsrc: 'parts/logos/dspace.nplg.gov.ge.png',
+      imgbg: '#7f8f74',
+      selected: false
+  }
+]
 function search(keyword){
-  var resultsfield = document.getElementById('results');
-  var main = document.getElementById('main').style;
+  let main = document.getElementById('main').style;
 
   main.top = '7%';
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      if(xhttp.responseText == '0 შედეგი'){
-        resultsfield.innerHTML = 'ასეთი არაფერი მოიძებნა';
-      }else if(xhttp.responseText == 'error 42069'){
-        resultsfield.innerHTML = 'გამოიყენეთ 3-ზე მეტი და 40-ზე ნაკლები სიმბოლო';
-      }else{
-        displayResults(xhttp.responseText);
-      }
-    }
-  };
-  xhttp.open("GET", "./api/el.ge/"+keyword, true);
-  xhttp.send();
-}
-function displayResults(response){
-  var resultsfield = document.getElementById('results');
+  document.getElementById('sources').style.display = 'none';
 
-  var result = JSON.parse(response);
-  console.log(result);
-  result.map(result => {
-    document.getElementById('results').innerHTML +=`
+  let selectedSources;
+  if(allSelected){
+    selectedSources = sources;
+  }else{
+    selectedSources = sources.filter(x => x.selected);
+  }
+
+  console.log(selectedSources)
+  addResultTabs(selectedSources);
+  fetchResults(selectedSources, keyword);
+}
+function addResultTabs(selectedSources){
+  let resultsfield = document.getElementById('results');
+  selectedSources.map((source, index) => {
+    let html = `
+    <div class="tab">
+      <div class="header">
+        <div class="logo">${source.name}</div>
+        <div class="stats${source.addr}">0 results</div>
+      </div>
+      <div id="results${index}"></div>
+    </div>
+    <br>
+    `
+    resultsfield.innerHTML += html;
+  })
+}
+function fetchResults(selectedSources, keyword){
+  selectedSources.map((source, index) => {
+    fetch("./api/"+source.addr+"/"+keyword)
+      .then(response => response.json())
+      .then(data => {
+        if(data == "Nothing found"){
+          console.log('f', source.name);
+        }else{
+          displayResults(data, index);
+        }
+      });
+  })
+}
+function displayResults(results, index){
+  var resultsfield = document.getElementById('results'+index);
+
+  console.log(results.length);
+  results.map(result => {
+    resultsfield.innerHTML +=`
     <div class='result'>
         <div class='awaitcover'>${result.imgsrc}altNameOrb${result.name}</div>
         <div class='bookinfo'>
             <div class='bookname'>${result.name}</div>
             <div class='bookauthor'>
                 <span class='identifier'>ავტორი: </span>${result.author}
-            </div><div class='bookdescription'>
-                <span class='identifier'>მოკლე აღწერა: </span>"+description+"
-            </div><div class='bottomButtons'>
+            </div>
+            <div class='bookdescription'>
+                <span class='identifier'></span>
+            </div>
+            <div class='bottomButtons'>
                 <a target='_blank' href='${result.href}'>
-                    <div class='downloadButton'>გადმოწერა / ნახვა</div>
+                    <div class='downloadButton'>სრულად</div>
                 </a>
             </div>
         </div>
