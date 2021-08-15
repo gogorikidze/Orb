@@ -3,18 +3,18 @@ const router = require('express').Router();
 const fetch = require("node-fetch");
 
 router.get('/search/:term/:page', (req, res) => {
-  getAllPages(encodeURI(req.params.term), req.params.page, result => {
+  getResults(encodeURI(req.params.term), req.params.page, result => {
     res.json(result);
   });
 })
 router.get('/stats/:term', (req, res) => {
-  pages(encodeURI(req.params.term), result => {
+  stats(encodeURI(req.params.term), result => {
     res.json(result);
   });
 })
 module.exports = router;
 
-async function pages(term, then){ //gets the number of all pages
+async function stats(term, then){ //gets the number of all pages
   let numberOfPages = 1;
   fetch(`http://dspace.nplg.gov.ge/simple-search?location=&query=${term}&filter_field_1=type&filter_type_1=equals&filter_value_1=Book&rpp=50&sort_by=score&order=DESC&etal=0&submit_search=Update`)
       .then(response => response.text())
@@ -27,12 +27,14 @@ async function pages(term, then){ //gets the number of all pages
           return "not found";
         }
 
+        let numberOfResults = $('#content > div:nth-child(4) > div > div.col-md-9 > div:nth-child(4) > div').text().split("of ")[1].split(" ")[0];
+
         let lastPageButton = $('#content > div:nth-child(4) > div > div.col-md-9 > div:nth-child(4) > ul > li:nth-last-child(2) > a');
         if(lastPageButton.text() == ''){ numberOfPages = 1 }else{ numberOfPages = parseInt(lastPageButton.text())}
-        then(numberOfPages);
+        then({pages: numberOfPages, results: numberOfResults});
       });
 }
-async function getAllPages(term, page, then){
+async function getResults(term, page, then){
   let result = [];
   await fetch(`http://dspace.nplg.gov.ge/simple-search?query=${term}&filter_field_1=type&filter_type_1=equals&filter_value_1=Book&sort_by=score&order=desc&rpp=50&etal=0&start=${(page-1)*50}`)
     .then(response => response.text())

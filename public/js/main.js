@@ -29,36 +29,38 @@ function search(keyword){
 
   console.log(selectedSources)
   addResultTabs(selectedSources);
-  fetchResults(selectedSources, keyword);
+  fetchStats(selectedSources, keyword);
+  //fetchResults(selectedSources, keyword);
 }
 function addResultTabs(selectedSources){
   let resultsfield = document.getElementById('results');
+  resultsfield.innerHTML = "";
+  
   selectedSources.map((source, index) => {
     let html = `
     <div class="tab">
-      <div class="header">
+      <div class="header" onclick="document.getElementById('results${index}').style.display = 'block'">
         <div class="logo">${source.name}</div>
-        <div class="stats${source.addr}">0 results</div>
+        <div id="stats${index}">შედეგები იტვირთება...</div>
       </div>
-      <div id="results${index}"></div>
+      <div id="results${index}" style="display:none"></div>
     </div>
     <br>
     `
     resultsfield.innerHTML += html;
   })
 }
-function fetchResults(selectedSources, keyword){
-  selectedSources.map((source, index) => {
-    fetch("./api/"+source.addr+"/search/"+keyword+"/1")
-      .then(response => response.json())
-      .then(data => {
-        if(data == "Nothing found"){
-          console.log('f', source.name);
-        }else{
-          displayResults(data, index);
-        }
-      });
-  })
+function fetchResults(selectedSources, index, keyword, page){
+  let source = selectedSources[index];
+  fetch("./api/"+source.addr+"/search/"+keyword+"/"+page)
+    .then(response => response.json())
+    .then(data => {
+      if(data == "Nothing found"){
+        console.log('f', source.name);
+      }else{
+        displayResults(data, index);
+      }
+    });
 }
 function displayResults(results, index){
   var resultsfield = document.getElementById('results'+index);
@@ -86,4 +88,21 @@ function displayResults(results, index){
     <br>`;
   })
   displaybook();
+}
+function fetchStats(selectedSources, keyword){
+  selectedSources.map((source, index) => {
+    fetch("./api/"+source.addr+"/stats/"+keyword)
+      .then(response => response.json())
+      .then(data => {
+        var statsfield = document.getElementById('stats'+index);
+        if(data == "Nothing found"){
+          console.log('f', source.name);
+          statsfield.innerText = "შედეგები არ არის";
+        }else{
+          console.log(data);
+          statsfield.innerText = data.results+" შედეგი | "+data.pages+" გვერდი";
+          fetchResults(selectedSources, index, keyword, 1);
+        }
+      });
+  })  
 }

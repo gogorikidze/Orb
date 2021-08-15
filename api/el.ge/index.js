@@ -2,7 +2,12 @@ const cheerio = require('cheerio');
 const router = require('express').Router();
 const fetch = require("node-fetch");
 
-router.get('/:term', (req, res) => {
+router.get('/search/:term/:page', (req, res) => {
+  getResults(encodeURI(req.params.term), req.params.page, result => {
+    res.json(result);
+  });
+})
+router.get('/stats/:term', (req, res) => {
   pages(encodeURI(req.params.term), result => {
     res.json(result);
   });
@@ -21,24 +26,24 @@ async function pages(term, then){ //gets the number of all pages
           return "not found";
         }
 
+        let numberOfResults = $('#app > div > div.container.searchResults > div.flex-between.mt-4.mb-3 > div').text().trim().split("სულ ")[1];
+
         let smaller = $.html('#app > div');
         if(smaller.split('<span>/</span>')[1] && smaller.split('<span>/</span>')[1].split('<span>')[1] && smaller.split('<span>/</span>')[1].split('<span>')[1].split('</span>')[0]){
           numberOfPages = parseInt(smaller.split('<span>/</span>')[1].split('<span>')[1].split('</span>')[0]);
         }else{
           numberOfPages = 1;
         }
-        getAllPages(term, numberOfPages, then);
+        then({pages: numberOfPages, results: numberOfResults});
       });
 }
-async function getAllPages(term, numberOfPages, then){
+async function getResults(term, page, then){
   let result = [];
-  for (let i = 1; i <= numberOfPages; i++) {
-    await fetch(`https://el.ge/search?visible_subtype_id=&query=${term}&type%5B%5D=1&type%5B%5D=52&page=${i}`)
-      .then(response => response.text())
-      .then(body => {
-        result = result.concat(parse(body));
-      })
-  }
+  await fetch(`https://el.ge/search?visible_subtype_id=&query=${term}&type%5B%5D=1&type%5B%5D=52&page=${page}`)
+    .then(response => response.text())
+    .then(body => {
+      result = parse(body);
+    })
   then(result);
 }
 function parse(body){
