@@ -49,7 +49,7 @@ function addResultTabs(selectedSources){
 }
 function fetchResults(selectedSources, keyword){
   selectedSources.map((source, index) => {
-    fetch("./api/"+source.addr+"/"+keyword)
+    fetch("./api/"+source.addr+"/search/"+keyword+"/1")
       .then(response => response.json())
       .then(data => {
         if(data == "Nothing found"){
