@@ -9,7 +9,12 @@ router.get('/search/:term/:page', (req, res) => {
 })
 router.get('/stats/:term', (req, res) => {
   stats(encodeURI(req.params.term), result => {
-    res.json(result);
+    switch(result){
+      case "Nothing found":
+        res.status('204'); //search returned no results;
+      default:
+        res.json(result);
+    }
   });
 })
 module.exports = router;
@@ -24,7 +29,7 @@ async function stats(term, then){ //gets the number of all pages
         //checks if number of results is 0
         if($('#content > div:nth-child(4) > div > div.col-md-9 > p').text().trim() == "Search produced no results."){
           then("Nothing found");
-          return "not found";
+          return;
         }
 
         let numberOfResults = $('#content > div:nth-child(4) > div > div.col-md-9 > div:nth-child(4) > div').text().split("of ")[1].split(" ")[0];

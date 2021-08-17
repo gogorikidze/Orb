@@ -9,7 +9,12 @@ router.get('/search/:term/:page', (req, res) => {
 })
 router.get('/stats/:term', (req, res) => {
   pages(encodeURI(req.params.term), result => {
-    res.json(result);
+    switch(result){
+      case "Nothing found":
+        res.status('204'); //search returned no results;
+      default:
+        res.json(result);
+    }
   });
 })
 module.exports = router;
@@ -23,7 +28,7 @@ async function pages(term, then){ //gets the number of all pages
         //checks if number of results = 0;
         if($('#app > div > div.container.searchResults > div.flex-between.mt-4.mb-3 > div').text().trim() == "სულ 0"){
           then("Nothing found");
-          return "not found";
+          return;
         }
 
         let numberOfResults = $('#app > div > div.container.searchResults > div.flex-between.mt-4.mb-3 > div').text().trim().split("სულ ")[1];

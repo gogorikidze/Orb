@@ -18,21 +18,23 @@ function addResultTabs(){
 function fetchResults(index, keyword){
   let source = selectedSources[index];
   fetch("./api/"+source.addr+"/search/"+keyword+"/"+source.currentPage)
-    .then(response => response.json())
-    .then(data => {
-      if(data == "Nothing found"){
+    .then(response => {
+      console.log(response.status);
+      if(response.status == 204){
         console.log('f', source.name);
       }else{
-        displayResults(data, index, keyword);
+        return response.json()
       }
-    });
+    })
+    .then(data => {
+        displayResults(data, index, keyword);
+      });
 }
 function displayResults(results, index, keyword){
   var resultsfield = document.getElementById('results'+index);
 
   resultsfield.innerHTML = "";
 
-  console.log(results.length);
   results.map(result => {
     /*
     resultsfield.innerHTML +=`
@@ -77,18 +79,25 @@ function displayResults(results, index, keyword){
 function fetchStats(keyword){
   selectedSources.map((source, index) => {
     fetch("./api/"+source.addr+"/stats/"+keyword)
-      .then(response => response.json())
+      .then(response => {
+        if(response.status == 204){
+          return "204"
+        }else{
+          return response.json();
+        }
+      })
       .then(data => {
         var statsfield = document.getElementById('stats'+index);
-        if(data == "Nothing found"){
-          console.log('f', source.name);
+
+        if(data == "204") {
           statsfield.innerText = "შედეგები არ არის";
-        }else{
-          source.pages = data.pages;
-          source.currentPage = 1;
-          statsfield.innerText = data.results+" შედეგი | "+data.pages+" გვერდი";
-          fetchResults(index, keyword, source.currentPage);
+          return;
         }
+
+        source.pages = data.pages;
+        source.currentPage = 1;
+        statsfield.innerText = data.results+" შედეგი | "+data.pages+" გვერდი";
+        fetchResults(index, keyword, source.currentPage);
       });
   })  
 }
