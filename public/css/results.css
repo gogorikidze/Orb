@@ -18,6 +18,15 @@
 #results .logo {
   float: left;
 }
+#results .tab .enabled {
+  color: var(--ancyan);
+}
+#results .tab .disabled {
+  color: grey;
+}
+.pagination {
+  padding: 10px;
+}
 /*result
 .result {
   position: relative;

@@ -14,19 +14,20 @@ let sources = [
       selected: false
   }
 ]
+let selectedSources;
+
 function search(keyword){
   let main = document.getElementById('main').style;
 
   main.top = '7%';
   document.getElementById('sources').style.display = 'none';
 
-  let selectedSources;
   if(allSelected){
     selectedSources = sources;
   }else{
     selectedSources = sources.filter(x => x.selected);
   }
   
-  addResultTabs(selectedSources);
-  fetchStats(selectedSources, keyword);
+  addResultTabs();
+  fetchStats(keyword);
 }
