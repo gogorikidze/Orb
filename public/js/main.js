@@ -38,13 +38,12 @@ function addResultTabs(selectedSources){
   selectedSources.map((source, index) => {
     let html = `
     <div class="tab">
-      <div class="header" onclick="document.getElementById('results${index}').style.display = 'block'">
+      <div class="header" onclick="toggleResultSource(${index})">
         <div class="logo">${source.name}</div>
         <div id="stats${index}">შედეგები იტვირთება...</div>
       </div>
       <div id="results${index}" style="display:none"></div>
     </div>
-    <br>
     `
     resultsfield.innerHTML += html;
   })
@@ -114,4 +113,18 @@ function fetchStats(selectedSources, keyword){
         }
       });
   })  
+}
+function toggleResultSource(index){
+  let resultsHolder = document.getElementById('results'+index);
+  let state = resultsHolder.style.display;
+  if(state == 'none'){
+    //closes any other open tabs
+    for(let i = 0; i < document.getElementById('results').children.length; i++){
+      if(i != index) document.getElementById('results'+i).style.display = 'none';
+    }
+    resultsHolder.style.display = 'block';
+    document.getElementById('stats'+index).scrollIntoView();
+  }else{
+    resultsHolder.style.display = 'none';
+  }
 }
