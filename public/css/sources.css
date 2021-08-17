@@ -3,6 +3,8 @@
   position: relative;
   left: 15%;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 #sources .source {
   width: 200px;

@@ -63,7 +63,7 @@ body {
   left: 15%;
 }
 
-/*result */
+/*result
 .result {
   position: relative;
   height: 220px;
@@ -147,10 +147,12 @@ body {
   border: 1px var(--ancyan) solid;
   color: var(--ancyan);
 }
+*/
 @media only screen and (max-width: 600px) {
   #logo {
     font-size: 66px;
   }
+  /*
   .result {
     height: auto;
     max-height: 500px;
@@ -188,9 +190,5 @@ body {
     right: 0px;
     margin-bottom: 5px;
   }
-  #cat {
-    width: 70%;
-    position: relative;
-    left: 15%;
-  }
+  */
 }

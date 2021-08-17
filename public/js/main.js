@@ -30,7 +30,6 @@ function search(keyword){
   console.log(selectedSources)
   addResultTabs(selectedSources);
   fetchStats(selectedSources, keyword);
-  //fetchResults(selectedSources, keyword);
 }
 function addResultTabs(selectedSources){
   let resultsfield = document.getElementById('results');
@@ -67,6 +66,7 @@ function displayResults(results, index){
 
   console.log(results.length);
   results.map(result => {
+    /*
     resultsfield.innerHTML +=`
     <div class='result'>
         <div class='awaitcover'>${result.imgsrc}altNameOrb${result.name}</div>
@@ -86,6 +86,15 @@ function displayResults(results, index){
         </div>
     </div>
     <br>`;
+    */
+    resultsfield.innerHTML +=`
+    <div style="display: flex; justify-content: center; align-items: center">
+            <div style="border-right: 1px solid gray"> ${result.name} </div>
+            <div style="border-right: 1px solid gray"> ${result.author} </div>
+            <a target='_blank' href='${result.href}'>ვრცლად
+            </a>
+    </div>
+    <hr>`;
   })
   displaybook();
 }
