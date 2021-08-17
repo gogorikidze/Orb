@@ -22,6 +22,11 @@ function search(keyword){
   main.top = '7%';
   document.getElementById('sources').style.display = 'none';
 
+  if(keyword.length < 1){
+    document.getElementById('results').innerHTML = "საძიებო ველი ვერ იქნება ცარიელი!";
+    return;
+  }
+
   if(allSelected){
     selectedSources = sources;
   }else{
