@@ -38,22 +38,3 @@
   text-align: center;
   font-size: 13px;
 }
-
-#results .tab {
-  width: 100%;
-  border: 1px solid black;
-}
-#results .header {
-  width: 100%;
-  background-color: var(--ancyan);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: white;
-}
-#results .header div {
-  margin: 10px;
-}
-#results .logo {
-  float: left;
-}
