@@ -11,9 +11,11 @@ router.get('/stats/:term', (req, res) => {
   stats(encodeURI(req.params.term), result => {
     switch(result){
       case "Nothing found":
-        res.status('204'); //search returned no results;
+        res.status('204').end() //search returned no results;
+        break;
       default:
         res.json(result);
+        break;
     }
   });
 })
