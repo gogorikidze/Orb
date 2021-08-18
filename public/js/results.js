@@ -17,7 +17,7 @@ function addResultTabs(){
   }
 function fetchResults(index, keyword){
   let source = selectedSources[index];
-  fetch("./api/"+source.addr+"/search/"+keyword+"/"+source.currentPage)
+  fetch("./api/"+source.addr+"/search/"+keyword+"/"+source.currentPage+"/"+source.pages)
     .then(response => {
       console.log(response.status);
       if(response.status == 204){
@@ -68,6 +68,9 @@ function displayResults(results, index, keyword){
 
   //add pagination
   let source = selectedSources[index];
+
+  if(source.singlePage) return;
+
   let html = `
   <div class='pagination'>
     <a ${(source.currentPage == 1) ? "class='disabled'" : `onclick="navigate(-1, ${index}, '${keyword}')" class="enabled`}">წინა გვერდი</a>
@@ -96,7 +99,7 @@ function fetchStats(keyword){
 
         source.pages = data.pages;
         source.currentPage = 1;
-        statsfield.innerText = data.results+" შედეგი | "+data.pages+" გვერდი";
+        statsfield.innerText = `${data.results} შედეგი | ${(source.singlePage) ? 1 : data.pages} გვერდი`;
         fetchResults(index, keyword, source.currentPage);
       });
   })  

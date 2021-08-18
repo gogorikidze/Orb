@@ -12,6 +12,14 @@ let sources = [
       imgsrc: 'parts/logos/dspace.nplg.gov.ge.png',
       imgbg: '#7f8f74',
       selected: false
+  },
+  {
+    name: 'ელექტრონული რესურსების პორტალი Eon.ge',
+    addr: 'eon.ge',
+    imgsrc: 'parts/logos/eon.ge.png',
+    imgbg: '#33363b',
+    singlePage: true,
+    selected: false
   }
 ]
 let selectedSources;

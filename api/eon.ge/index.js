@@ -2,8 +2,8 @@ const cheerio = require('cheerio');
 const router = require('express').Router();
 const fetch = require("node-fetch");
 
-router.get('/search/:term/:page', (req, res) => {
-  getResults(encodeURI(req.params.term), req.params.page, result => {
+router.get('/search/:term/:page/:numberOfPages', (req, res) => {
+  getResults(encodeURI(req.params.term), req.params.numberOfPages, result => {
     res.json(result);
   });
 })
@@ -12,9 +12,6 @@ router.get('/stats/:term', (req, res) => {
     switch(result){
       case "Nothing found":
         res.status('204').end(); //search returned no results;
-        break;
-      case "Search is too broad":
-        res.status('406').end();
         break;
       default:
         res.json(result);
@@ -37,33 +34,29 @@ async function pages(term, then){ //gets the number of all pages
         }
 
         let numberOfpages = Math.ceil(numberOfResults/12);
-        if(numberOfpages > 10){
-          then("Search is too broad");
-          return;
-        }
+        // if(numberOfpages > 10){
+        //   then("Search is too broad");
+        //   return;
+        // }
         
-        getResults(term, numberOfpages, then);
+        then({pages: numberOfpages, results: 'რამოდენიმე'})
       });
 }
-async function getResults(term, pages, then){
+async function getResults(term, numberOfPages, then){
+  let results = []
 
-  let competedpages = 0;
-  let booklinks = []
-  for (let index = 1; index <= pages; index++) {
-    fetch(`https://eon.ge/page/${index}/?s=${term}`)
+  let pagelimit = (numberOfPages <= 5) ? numberOfPages : 5; //last pages are just articles
+
+  for (let index = 1; index <= pagelimit ; index++) {
+    await fetch(`https://eon.ge/page/${index}/?s=${term}`)
       .then(response => response.text())
       .then(body => {
         const $ = cheerio.load(body);
 
-        booklinks = booklinks.concat(parse(body))
-
-        competedpages += 1;
-
-        if(competedpages == pages){
-          then(booklinks);
-        }
+        results = results.concat(parse(body))
       });
   }
+  then(results);
 }
 function parse(body){
   let pageResults = [];

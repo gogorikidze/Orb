@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const router = require('express').Router();
 const fetch = require("node-fetch");
 
-router.get('/search/:term/:page', (req, res) => {
+router.get('/search/:term/:page/:numberOfPages', (req, res) => {
   getResults(encodeURI(req.params.term), req.params.page, result => {
     res.json(result);
   });
