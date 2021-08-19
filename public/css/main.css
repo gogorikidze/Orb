@@ -41,6 +41,7 @@ body {
 #logo {
   font-size: 90px;
   color: var(--ancyan);
+  text-decoration: none;
 }
 #lower {
   padding-bottom: 20px;

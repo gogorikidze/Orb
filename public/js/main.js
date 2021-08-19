@@ -1,5 +1,20 @@
 let sources = [
   {
+    name: 'ელექტრონული რესურსების პორტალი Eon.ge',
+    addr: 'eon.ge',
+    imgsrc: 'parts/logos/eon.ge.png',
+    imgbg: '#33363b',
+    singlePage: true,
+    selected: false
+  },
+  {
+    name: 'საქართველოს პარლამენტის ეროვნული ბიბლიოთეკა',
+    addr: 'dspace.nplg.gov.ge',
+    imgsrc: 'parts/logos/dspace.nplg.gov.ge.png',
+    imgbg: '#7f8f74',
+    selected: false
+  },
+  {
       name: 'ელექტრონული რესურსების პორტალი EL.ge',
       addr: 'el.ge',
       imgsrc: 'parts/logos/el.ge.png',
@@ -7,18 +22,10 @@ let sources = [
       selected: false
   },
   {
-      name: 'საქართველოს პარლამენტის ეროვნული ბიბლიოთეკა',
-      addr: 'dspace.nplg.gov.ge',
-      imgsrc: 'parts/logos/dspace.nplg.gov.ge.png',
-      imgbg: '#7f8f74',
-      selected: false
-  },
-  {
-    name: 'ელექტრონული რესურსების პორტალი Eon.ge',
-    addr: 'eon.ge',
-    imgsrc: 'parts/logos/eon.ge.png',
-    imgbg: '#33363b',
-    singlePage: true,
+    name: 'თსუ - ეროვნული სამეცნიერო ბიბლიოთეკა',
+    addr: 'sciencelib.ge',
+    imgsrc: 'parts/logos/sciencelib.ge.png',
+    imgbg: '#f3fafd ',
     selected: false
   }
 ]
