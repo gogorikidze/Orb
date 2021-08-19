@@ -69,7 +69,7 @@ function parse(body){
       let author = '[Null]';
       let href = $(element).find('h2 > a').attr('href');
       let imgsrc = $(element).find('div > a > img').attr('data-src');
-      pageResults.push({name: name, author: author, href: href, imgsrc: imgsrc});
+      pageResults.push({name: name, href: href, imgsrc: imgsrc});
     }
   });
   return pageResults;

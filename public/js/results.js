@@ -19,7 +19,6 @@ function fetchResults(index, keyword){
   let source = selectedSources[index];
   fetch("./api/"+source.addr+"/search/"+keyword+"/"+source.currentPage+"/"+source.pages)
     .then(response => {
-      console.log(response.status);
       if(response.status == 204){
         console.log('f', source.name);
       }else{
@@ -36,32 +35,14 @@ function displayResults(results, index, keyword){
   resultsfield.innerHTML = "";
 
   results.map(result => {
-    /*
     resultsfield.innerHTML +=`
-    <div class='result'>
-        <div class='awaitcover'>${result.imgsrc}altNameOrb${result.name}</div>
-        <div class='bookinfo'>
-            <div class='bookname'>${result.name}</div>
-            <div class='bookauthor'>
-                <span class='identifier'>ავტორი: </span>${result.author}
-            </div>
-            <div class='bookdescription'>
-                <span class='identifier'></span>
-            </div>
-            <div class='bottomButtons'>
-                <a target='_blank' href='${result.href}'>
-                    <div class='downloadButton'>სრულად</div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <br>`;
-    */
-    resultsfield.innerHTML +=`
-    <div style="display: flex; justify-content: center; align-items: center;">
-            <div style="border-right: 1px solid gray; padding: 10px"> ${result.name} </div>
-            <div style="border-right: 1px solid gray; padding: 10px"> ${result.author} </div>
-            <a target='_blank' style="margin: 10px" href='${result.href}'>ვრცლად</a>
+    <div class="result">
+      <div class='awaitcover'>${result.imgsrc}altNameOrb${result.name}</div>
+      <div class='info'>
+        <div><span class='identifier'>სრული სათაური: </span>${result.name}</div>
+        <div><span class='identifier'>ავტორი: </span>${result.author}</div>
+        <a target='_blank' style="margin: 10px;" href='${result.href}'>ვრცლად</a>
+      </div>
     </div>
     <hr>`;
   })
@@ -69,15 +50,15 @@ function displayResults(results, index, keyword){
   //add pagination
   let source = selectedSources[index];
 
-  if(source.singlePage) return;
-
   let html = `
   <div class='pagination'>
     <a ${(source.currentPage == 1) ? "class='disabled'" : `onclick="navigate(-1, ${index}, '${keyword}')" class="enabled`}">წინა გვერდი</a>
     <text>${source.currentPage}</text>
     <a ${(source.currentPage == source.pages) ? "class='disabled'" : `onclick="navigate(1, ${index}, '${keyword}')" class="enabled`}">შემდეგი გვერდი</a>
   </div>`;
-  resultsfield.innerHTML += html;
+  resultsfield.innerHTML += source.singlePage ? "<text class='enabled'>ამ წყაროდან მეტი შედეგი არ არის</text>" : html;
+
+  displaybook();
 }
 function fetchStats(keyword){
   selectedSources.map((source, index) => {
