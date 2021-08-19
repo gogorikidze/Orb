@@ -39,8 +39,8 @@ function displayResults(results, index, keyword){
     <div class="result">
       <div class='awaitcover'>${result.imgsrc}altNameOrb${result.name}</div>
       <div class='info'>
-        <div><span class='identifier'>სრული სათაური: </span>${result.name}</div>
-        <div><span class='identifier'>ავტორი: </span>${result.author}</div>
+        <div><span class='identifier'>სახელი: </span> ${result.name}</div>
+        <div><span class='identifier'>ავტორი: </span> ${result.author}</div>
         <a target='_blank' style="margin: 10px;" href='${result.href}'>ვრცლად</a>
       </div>
     </div>
@@ -56,7 +56,7 @@ function displayResults(results, index, keyword){
     <text>${source.currentPage}</text>
     <a ${(source.currentPage == source.pages) ? "class='disabled'" : `onclick="navigate(1, ${index}, '${keyword}')" class="enabled`}">შემდეგი გვერდი</a>
   </div>`;
-  resultsfield.innerHTML += source.singlePage ? "<text class='enabled'>ამ წყაროდან მეტი შედეგი არ არის</text>" : html;
+  resultsfield.innerHTML += source.singlePage ? "<text class='enabled'>ამ წყაროდან მეტი შედეგი არ არის :(</text>" : html;
 
   displaybook();
 }

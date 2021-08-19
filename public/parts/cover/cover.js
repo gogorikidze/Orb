@@ -9,7 +9,7 @@ function displaybook() {
     let htmlblank =`
     <div style='background-color: ${stringToColour(name)}' class='topbook'>
       <div class='notch'></div>
-      <div class='notchtriangle' style='border-bottom: ${coverholders[i].clientHeight/100*5/100*90}px solid white;'></div>
+      <div class='notchtriangle' style='border-bottom: ${(220/100*5/100*90)}px solid white;'></div>
     </div>
     <div class='lowercover'>
       <div style='background-color: ${stringToColour(name)}' class='leftbook'></div>
@@ -23,7 +23,7 @@ function displaybook() {
     let html =`
     <div style='background-image: url("${src}"); display:none' class='topbook'>
       <div class='notch'></div>
-      <div class='notchtriangle' style='border-bottom: ${(coverholders[i].clientHeight/100*5/100*90)}px solid white;'></div>
+      <div class='notchtriangle' style='border-bottom: ${(220/100*5/100*90)}px solid white;'></div>
     </div>
     <div class='lowercover' style='display:none'>
       <div style='background-image: url(${src})' class='leftbook'></div>
@@ -42,10 +42,10 @@ function loadEvent(img) {
   div.removeChild(div.children[0]);
 }
 function loadedEvent(div) {
-  div.children[2].style.display = 'block';
-  div.children[3].style.display = 'block';
-  div.removeChild(div.children[0]);
-  div.removeChild(div.children[0]);
+  // div.children[2].style.display = 'block';
+  // div.children[3].style.display = 'block';
+  // div.removeChild(div.children[0]);
+  // div.removeChild(div.children[0]);
 }
 var stringToColour = function(str) {
   var hash = 0;
