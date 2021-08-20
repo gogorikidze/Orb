@@ -26,7 +26,7 @@ function displaySources(){
         let html = `
         <div class='source' id="source${index}" onclick="updateSources(this.id)" style="${css}">
         <div class='logowrap' ${logobackground}">
-            <img class='logo' src='${source.imgsrc}'>
+            <img class='logo' src='parts/logos/${source.addr}.png'>
         </div>
         <div class='namewrap'>
             <p class='name'>${source.name}</p>

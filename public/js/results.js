@@ -9,7 +9,7 @@ function addResultTabs(){
           <div class="logo">${source.name}</div>
           <div id="stats${index}">შედეგები იტვირთება...</div>
         </div>
-        <div id="results${index}" style="display:none"></div>
+        <div id="results${index}" class='resultsHolder'></div>
       </div>
       `
       resultsfield.innerHTML += html;
@@ -49,6 +49,7 @@ function displayResults(results, index, keyword){
 
   //add pagination
   let source = selectedSources[index];
+  source.resultsForCurrentPage = results.length;
 
   let html = `
   <div class='pagination'>
@@ -57,6 +58,8 @@ function displayResults(results, index, keyword){
     <a ${(source.currentPage == source.pages) ? "class='disabled'" : `onclick="navigate(1, ${index}, '${keyword}')" class="enabled`}">შემდეგი გვერდი</a>
   </div>`;
   resultsfield.innerHTML += source.singlePage ? "<text class='enabled'>ამ წყაროდან მეტი შედეგი არ არის :(</text>" : html;
+
+  if(source.onPageLoad) source.onPageLoad(index);
 
   displaybook();
 }

@@ -26,6 +26,10 @@
   color: grey;
   cursor: pointer;
 }
+#results .resultsHolder {
+  padding-top: 20px;
+  display: none;
+}
 .pagination {
   padding: 10px;
 }
