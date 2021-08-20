@@ -25,7 +25,14 @@ let sources = [
     name: 'თსუ - ეროვნული სამეცნიერო ბიბლიოთეკა',
     addr: 'sciencelib.ge',
     imgsrc: 'parts/logos/sciencelib.ge.png',
-    imgbg: '#f3fafd ',
+    imgbg: '#white',
+    selected: false
+  },
+  {
+    name: 'სამცხე-ჯავახეთის სახელმწიფო უნივერსიტეტის ბიბლიოთეკა',
+    addr: 'sjuni.edu.ge',
+    imgsrc: 'parts/logos/sjuni.edu.ge.png',
+    imgbg: '#161738',
     selected: false
   }
 ]

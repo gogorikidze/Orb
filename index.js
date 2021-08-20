@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 
-let apis = ['el.ge', 'dspace.nplg.gov.ge', 'eon.ge', 'sciencelib.ge']
+let apis = ['el.ge', 'dspace.nplg.gov.ge', 'eon.ge', 'sciencelib.ge', 'sjuni.edu.ge']
 
 let app = express();
 const PORT = process.env.PORT || 3000;
