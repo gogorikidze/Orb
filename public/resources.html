@@ -1,0 +1,136 @@
+<div id="sources"></div>
+<script>
+let sources = [
+    {
+        url:'http://library.archives.gov.ge/',
+        name: 'საქართველოს ეროვნული არქივი'
+    },
+    {
+        url:'http://dspace.tsc.edu.ge/',
+        name: 'ელექტრონული მუსიკალური ბიბლიოთეკა'
+    },
+    {
+        url:'https://opac.cu.edu.ge',
+        name: 'კავკასიის უნივერსიტეტის ბიბლიოთეკა'
+    },
+    {
+        url:'https://opac.iliauni.edu.ge , https://library.iliauni.edu.ge/elibrary', 
+        name: 'ილიას სახელმწიფო უნივერსიტეტის ბიბლიოთეკა'
+    },
+    {
+        url:'https://ebooks.tsu.ge/',
+        name: 'თბილისის სახელმწიფო უნივერსიტეტის ელექტრონული დოკუმენტების საცავი'
+    },
+    {
+        url:'https://dspace.tsu.ge/',
+        name: 'თსუ-ს ინტელექტუალური ნაშრომების რეპოზიტორი DSpace'
+    },
+    {
+        url:'https://xvamli.ucoz.com/publ/elekt-39-ronuli_ts-39-ignebi/72-1-0-369',
+        name: 'უფასო ელ-წიგნების ბიბლიოთეკა ("ხვამლი")'
+    },
+    {
+        url:'https://scroll.ge/tag/%E1%83%94%E1%83%9A-%E1%83%AC%E1%83%98%E1%83%92%E1%83%9C%E1%83%94%E1%83%91%E1%83%98/',
+        name: 'უფასო ელ-წიგნების ბიბლიოთეკა (scroll)'
+    },
+    {
+        url:'https://trileri.wordpress.com/category/%E1%83%AC%E1%83%98%E1%83%92%E1%83%9C%E1%83%94%E1%83%91%E1%83%98%E1%83%A1-%E1%83%92%E1%83%90%E1%83%93%E1%83%9B%E1%83%9D%E1%83%AC%E1%83%94%E1%83%A0%E1%83%90/',
+        name: 'უფასო ელ-წიგნების ბიბლიოთეკა (trileri)'
+    },
+    {
+        url:'https://ibooks.ge/books',
+        name: 'ელექტრონული წიგნების ონლაინ მაღაზია IBOOKS.GE'
+    },
+    {
+        url:'https://www.lit.ge/',
+        name: 'ელექტრონული წიგნების ონლაინ მაღაზია LIT.GE'
+    },
+    {
+        url:'https://saba.com.ge/',
+        name: 'ელექტრონული წიგნების ონლაინ მაღაზია SABA.COM.GE'
+    },
+    {
+        url:'https://evexhospitals.ge/ka/e-books',
+        name: 'ევექსის ჰოსპიტალების ელექტრონული წიგნები'
+    },
+    {
+        url:'http://medlib.gela.org.ge/',
+        name: 'თბილისის სახელმწიფო სამედიცინო უნივერსიტეტის ბიბლიოთეკა'
+    },
+    {
+        url:'http://dspace.gela.org.ge/handle/123456789/254',
+        name: 'თსუ მიხეილ ნოდიას სახელობის გეოფიზიკის ინსტიტუტის ონლაინ რესურსები'
+    },
+    {
+        url:'http://dspace.gela.org.ge/handle/123456789/7092',
+        name: 'თსუ იურიდიული ფაკულტეტის ონლაინ რესურსები'
+    },
+    {
+        url:'http://dspace.gela.org.ge/handle/123456789/8868',
+        name: 'საქართველოს ტექნიკური უნივერსიტეტის ჰიდრომეტეოროლოგიის ინსტიტუტის ონლაინ რესურსები'
+    },
+    {
+        url:'http://dspace.gela.org.ge/handle/123456789/70',
+        name: 'სოციალურ მეცნიერებათა ცენტრის ონლაინ რესურსები'
+    },
+    {
+        url:'https://gnta.ge/ge/publications/',
+        name: 'ტურიზმის ეროვნული ადმინისტრაციის ელექტრონული ბიბლიოთეკა'
+    },
+    {
+        url:'https://qristiani.ge/q/?page_id=758',
+        name: 'qristiani.ge ელ. წიგნები'
+    },
+    {
+        url:'https://geotourism.ge/research/handbook',
+        name: 'ელ. ბიბლიოთეკა ტურიზმის ინდუსტრიაში'
+    },
+    {
+        url:'https://openlibrary.org/search?q=language%3Ageo&mode=everything',
+        name: 'ღია ბიბლიოთეკის ქართულენოვანი წიგნები'
+    },
+    {
+        url:'https://archive.org/search.php?query=language%3A%28Georgian%29&and[]=mediatype%3A%22texts%22',
+        name: 'მსოფლიო ინტერნეტ არქივის ქართულენოვანი წიგნები'
+    },
+    {
+        url:'http://opacqutaisi.gela.org.ge/',
+        name: 'ქუთაისის ილია ჭავჭავაძის სახელობის სამეცნიერო ბიბლიოთეკა'
+    },
+    {
+        url:'http://www.nplg.gov.ge/greenstone3/library/',
+        name: 'მ. მამარდაშვილის სახელობის ციფრული კოლექციები'
+    },
+    {
+        url:'http://cat.bpl.ge/ec/ka/changedb.html',
+        name: 'აკაკი წერეთლის სახელობის ქალაქ ბათუმის საჯარო ბიბლიოთეკა'
+    },
+    {
+        url:'http://igar10.byethost4.com/rustavi/opac/index_geo.php',
+        name: 'რუსთავის საბიბლიოთეკო გაერთიანება'
+    },
+    {
+        url:'https://downsyndrome.ge/ka/books',
+        name: 'დაუნის სინდრომის ასოციაცია'
+    },
+    {
+        url:'http://gantiadi.ge/elektronuli-tsignebi/',
+        name: 'უფასო ელ-წიგნების ბიბლიოთეკა (gantiadi)'
+    },
+    {
+        url:'http://elwignebi.blogspot.com/',
+        name: 'უფასო ელ-წიგნების ბიბლიოთეკა (elwignebi)'
+    },
+    {
+        url:'http://opac.gtu.ge/',
+        name: 'სტუ-ს საუნივერსიტეტო ბიბლიოთეკა'
+    }
+]
+
+let sourceDiv = document.getElementById("sources");
+
+sources.map(source => {
+    let html = `<p><a href='${source.url}'>${source.name}</a></p>`;
+    sourceDiv.innerHTML += html;
+})
+</script>
