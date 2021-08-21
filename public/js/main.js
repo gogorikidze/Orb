@@ -29,8 +29,19 @@ let sources = [
     imgbg: '#161738',
   }
 ]
-sources.map(sources => sources.selected = false)
+sources.map(source => source.selected = false)
 let selectedSources;
+
+sources.map(source => {
+  fetch(`./api/${source.addr}/bookcount`)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        source.bookcount = data;
+        displaySources();
+      });
+})
 
 function search(keyword){
   let main = document.getElementById('main').style;

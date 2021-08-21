@@ -91,13 +91,11 @@ function parse(body){
   let pageResults = [];
   const $ = cheerio.load(body);
   $('#adminForm > table > tbody').find('tr').each(function (index, element) {
-    if(index != 0){
       let name = $(element).find('td:nth-child(2) > h3 > a').text().trim();
       let author = $(element).find('td:nth-child(2) > div').text().trim();
       let href = 'https://www.sjuni.edu.ge'+$(element).find('td:nth-child(2) > h3 > a').attr('href');
       let imgsrc = 'https://www.sjuni.edu.ge'+$(element).find('td:nth-child(1) > div > a > img').attr('src');
       pageResults.push({name: name, author: author, href: href, imgsrc: imgsrc});
-    }
   });
   return pageResults;
 }

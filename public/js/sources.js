@@ -29,7 +29,7 @@ function displaySources(){
             <img class='logo' src='parts/logos/${source.addr}.png'>
         </div>
         <div class='namewrap'>
-            <p class='name'>${source.name}</p>
+            <p class='name' >${source.name} ${ source.bookcount ? "("+source.bookcount+")" : ""}</p>
         </div>
         </div>
         `;
