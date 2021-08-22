@@ -19,7 +19,7 @@
 }
 #sources .logowrap {
   width: 100%;
-  height: 70%;
+  height: 60%;
   border-bottom: 1px solid black;
 
   display: flex;
@@ -30,11 +30,12 @@
   border-top-right-radius: 20px;
 }
 #sources .namewrap {
+  height: 40%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 #sources .name {
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
 }

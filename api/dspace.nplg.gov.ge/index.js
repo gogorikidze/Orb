@@ -19,7 +19,7 @@ router.get('/stats/:term', (req, res) => {
     }
   });
 })
-router.get('/bookcount/', (req, res) => {
+router.get('/bookcount', (req, res) => {
   getOverallCount(result => {
     res.json(result);
   });
